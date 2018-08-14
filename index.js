@@ -12,8 +12,7 @@ import store from "./src/store";
 
 const AppContainer = () =>
     <Provider store={store}>
-        <App/>
+        <App />
     </Provider>;
 
 AppRegistry.registerComponent(appName, () => AppContainer);
-

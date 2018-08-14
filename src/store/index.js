@@ -12,7 +12,7 @@ const store = createStore(reducers, middleware);
 
 store.dispatch({
     type: "FETCH_POSTS",
-    payload: axios.get('https://api.addictaf.com/posts/postyy/')
+    payload: axios.get('https://api.addictaf.com/posts/post/')
 });
 
 export default store;

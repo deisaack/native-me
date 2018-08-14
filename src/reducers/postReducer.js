@@ -1,5 +1,6 @@
 import { FETCH_POSTS_FULFILLED, FETCH_POSTS_PENDING, FETCH_POSTS_REJECTED } from "../actions/types";
 
+
 const initialState = {
     nextPage: undefined,
     previousPage: undefined,

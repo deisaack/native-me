@@ -1,23 +1,35 @@
-import { USER_LOGIN } from "../actions/types";
+import { USER_LOGIN, USER_LOGIN_PENDING, USER_LOGIN_FULFILLED, USER_LOGIN_REJECTED } from "../actions/types";
+import axios from "axios";
+
 
 const initialState = {
-    username: "Anonimous",
-    email: "None",
-    password: '',
-    phone: '',
-    firstName: '',
-    lastName: '',
-    image: 'https://previews.123rf.com/images/sudowoodo/sudowoodo1703/sudowoodo170300064/75253395-anonymous-user-icon-black-silhouette-of-man-in-business-suit-with-question-mark-on-face-profile-pict.jpg',
-    loggedIn: false
+    username: "kipkemei",
+    email: "deisaack@gmail.com",
+    password: 'Foo',
+    phone: '0721732519',
+    firstName: 'Kipkemei',
+    lastName: 'Isaac',
+    image: 'http://icons.iconarchive.com/icons/artua/dragon-soft/512/User-icon.png',
+    loggedIn: false,
+    id: undefined,
+    token: '',
+    loading: false,
+    error: null
 };
+
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case USER_LOGIN:
+        case USER_LOGIN_PENDING:
+            return {...state, loading: true};
+        case USER_LOGIN_FULFILLED:
+            let data = action.payload.data;
             return {
-                ...state,
-                image: 'https://previews.123rf.com/images/sudowoodo/sudowoodo1703/sudowoodo170300064/75253395-anonymous-user-icon-black-silhouette-of-man-in-business-suit-with-question-mark-on-face-profile-pict.jpg'
+                ...state, token: data.token, loading: false, id: data.id,
+                image: 'https://www.atomix.com.au/media/2015/06/atomix_user31.png'
             };
+        case USER_LOGIN_REJECTED:
+            return {...state, loading: false, error: action.payload.message};
         default:
             return state;
     }
